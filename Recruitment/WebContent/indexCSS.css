@@ -1,0 +1,35 @@
+#optiontop{
+	background:#50c2c4;	
+}
+#option{
+	display:inline-block;
+	font-weight:bold;
+	color:white;
+}
+#option ul li{
+	display:inline-block;
+	margin-left:50px;
+	margin-right:50px;
+	margin-top:10px;
+}
+a{
+	color:white;
+	text-decoration:none;
+}
+#name{
+	font-size:24px;
+	font-style:sans-serif;
+}
+#about{
+	margin-left:250px;
+	margin-right:250px;
+}
+#header{
+	background:#398a8c;
+	text-align: center;
+	color: #fff;
+}
+
+#heading{
+	color:#398a8c;
+}
