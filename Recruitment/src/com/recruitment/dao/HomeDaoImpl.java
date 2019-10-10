@@ -539,4 +539,28 @@ public class HomeDaoImpl implements HomeDao {
 			return count;
 	}
 
+	@Override
+	public int checkstudemailverified(String email) {
+		// TODO Auto-generated method stub
+		final String proccall = "{call Proc_App(?,?)}";
+		Connection conn = null;
+		int count=0;
+		try {
+			conn = jdbcTemplate.getDataSource().getConnection();
+			CallableStatement callableSt = conn.prepareCall(proccall);
+			callableSt.setString(1, "verifymail");
+			callableSt.setString(2, email);
+			ResultSet rst = callableSt.executeQuery();
+			while (rst.next()) {
+				count++;  
+				}	
+		}
+		 catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println("the number of rows output:"+count);
+			return count;
+
+	}
+
 }

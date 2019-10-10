@@ -23,7 +23,7 @@
                         <li><a href="stVerify">Student Requests</a></li>
                         <li><a href="deriveVerify">Post Drives</a></li>
                         <li><a href="viewDrives">View Drives</a></li>
-                        <li><a href="#">Log out</a></li>
+                        <li><a href="adminlogout">Log out</a></li>
                         
                     </ul>
                 </div>    

@@ -54,6 +54,8 @@ public interface HomeDao {
 
 	int checkemailverified(String email);
 
+	int checkstudemailverified(String email);
+
 	
 	
 }

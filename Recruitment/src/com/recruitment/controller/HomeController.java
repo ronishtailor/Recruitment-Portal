@@ -169,7 +169,7 @@ public String updatestudent(HttpServletRequest req,Student s1)
   return "showStOption";
 }
 @RequestMapping(value="adminLogin")
-public String adminlogin()
+public String adminlogin(HttpServletRequest req)
 {
 	return "adminLogin";
 }
@@ -179,10 +179,16 @@ public String adminoption()
 	return "adminOption";
 }
 @RequestMapping(value="cmpVerify")
-public String cmpverify(HttpServletRequest req)
-{	ArrayList<Company> cmp=hs.cmpVerify();
+public String cmpverify(HttpServletRequest req,HttpSession session)
+{	SessionBean sb=(SessionBean)session.getAttribute("sessionbean");
+    if(sb!=null)
+    {
+	ArrayList<Company> cmp=hs.cmpVerify();
 	req.setAttribute("cmplist",cmp);
 	return "cmpVerify";
+    }
+    else
+    return "index";
 }
 @RequestMapping(value="stVerify")
 public String stverify(HttpServletRequest req)
@@ -204,7 +210,7 @@ public String stVerified(HttpServletRequest req)
 	return "redirect:stVerify";
 }
 @RequestMapping(value="checkadmin")
-public String checkAdmin(HttpServletRequest req)
+public String checkAdmin(HttpServletRequest req,HttpSession session)
 {	String email=req.getParameter("email");
 	String pass=req.getParameter("pass");
 	req.setAttribute("email",email);
@@ -221,7 +227,10 @@ public String checkAdmin(HttpServletRequest req)
 		return "adminLogin";
 	}
 	else
-	{
+	{   SessionBean s=new SessionBean();
+	  s.setEmail(email);
+	  session.setAttribute("sessionbean",s);		
+		
 		req.setAttribute("msg","password valid");
 		req.setAttribute("email",email);
 		return "adminOption"; 
@@ -327,10 +336,16 @@ public String comingdrives(HttpServletRequest req)
 {
 	String email=req.getParameter("semail");
 	req.setAttribute("semail",email);
+	int x=hs.checkstudemailverified(email);
+	if(x==1)
+	{
 	ArrayList<Recruiter> r=hs.ComingDerivesInfo();
 	
 	req.setAttribute("list", r);
 	return "comingDrives";
+	}
+	else
+	return "showStOption";
 }
 @RequestMapping(value="Apply")
 public String apply(HttpServletRequest req)
@@ -425,6 +440,12 @@ public String compotpverify()
 public String compotpverified()
 {
 return "";	
+}
+@RequestMapping(value="adminlogout")
+public String adminlogout(HttpSession session)
+{
+	session.invalidate();
+	return "index";
 }
 
 }

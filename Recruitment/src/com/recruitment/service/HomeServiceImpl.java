@@ -151,5 +151,11 @@ public class HomeServiceImpl implements HomeService {
 		return hs.checkemailverified(email);
 	}
 
+	@Override
+	public int checkstudemailverified(String email) {
+		// 
+		return hs.checkstudemailverified(email);
+	}
+
 	
 }

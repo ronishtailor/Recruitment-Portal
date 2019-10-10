@@ -55,5 +55,7 @@ public interface HomeService{
 
 	int checkemailverified(String email);
 
+	int checkstudemailverified(String email);
+
 	
 }
